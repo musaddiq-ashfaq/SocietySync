@@ -1,0 +1,11 @@
+C:\D\society_management_system\society_management_system\bin\Debug\society_management_system.exe.config
+C:\D\society_management_system\society_management_system\bin\Debug\society_management_system.exe
+C:\D\society_management_system\society_management_system\bin\Debug\society_management_system.pdb
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.csproj.AssemblyReference.cache
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.csproj.SuggestedBindingRedirects.cache
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.Form1.resources
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.Properties.Resources.resources
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.csproj.GenerateResource.cache
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.csproj.CoreCompileInputs.cache
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.exe
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.pdb
