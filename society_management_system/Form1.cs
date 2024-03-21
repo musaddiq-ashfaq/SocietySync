@@ -28,22 +28,30 @@ namespace society_management_system
         {
             String username = username_box.Text;
             String password = password_box.Text;
+            String name = name_box.Text;
+            String role = role_box.Text;
+            String batch = batch_box.Text;
+            String degree = degree_box.Text;
 
-             bool flag = InsertUser(username,password);
-            if (flag == false)
+            bool flag = InsertUser(username, password, name, role, batch, degree);
+            if (flag)
             {
-                MessageBox.Show("Username Already Exist");
+                MessageBox.Show("SignUp Successful");
+                home homePage = new home(username);
+                homePage.Show();
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("SignUp Successful");
+                MessageBox.Show("Username Already Exists");
             }
         }
-        private bool InsertUser(string username, string password)
+
+        private bool InsertUser(string username, string password, string name, string role, string batch, string degree)
         {
             string query = @"
-            INSERT INTO users (username, password)
-            SELECT @username, @password
+            INSERT INTO users (username, password, name, role, batch, degree)
+            SELECT @username, @password, @name, @role, @batch, @degree
             WHERE NOT EXISTS (
                 SELECT 1 FROM users WHERE username = @username
             )";
@@ -53,12 +61,16 @@ namespace society_management_system
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@role", role);
+                command.Parameters.AddWithValue("@batch", batch);
+                command.Parameters.AddWithValue("@degree", degree);
 
                 try
                 {
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    return rowsAffected>0;
                 }
                 catch (Exception ex)
                 {
@@ -67,6 +79,7 @@ namespace society_management_system
                 }
             }
         }
+
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -78,6 +91,11 @@ namespace society_management_system
             login_form loginForm = new login_form();
             loginForm.Show();
             this.Hide();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

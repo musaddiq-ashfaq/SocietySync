@@ -25,7 +25,10 @@ namespace society_management_system
             bool flag = check_user(username, password);
             if(flag==true)
             {
-                MessageBox.Show("Login Successful");
+                //MessageBox.Show("Login Successful");
+                home homePage = new home(username);
+                homePage.Show();
+                this.Close();
             }
             else
             {
