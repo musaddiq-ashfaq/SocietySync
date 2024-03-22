@@ -15,8 +15,8 @@ namespace society_management_system
     public partial class edit_info : Form
     {
         SqlConnection connection_string = new SqlConnection(@"Data Source=DESKTOP-LIM5U3M\SQLEXPRESS;Initial Catalog=society_db;Integrated Security=True");
-        private string logged_user;
         private string logged_admin;
+        private string logged_user;
         public edit_info(string username,string admin = null)
         {
             InitializeComponent();
@@ -33,7 +33,6 @@ namespace society_management_system
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", username);
-
                 try
                 {
                     connection.Open();
@@ -66,33 +65,29 @@ namespace society_management_system
             string newDegree = degree_box.Text;
 
             string query = @"
-        UPDATE users
-        SET name = @newName, role = @newRole, batch = @newBatch, degree = @newDegree, password = @newpassword, username = @newUsername
-        WHERE username = @username";
+            UPDATE users
+            SET degree = @newDegree,role = @newRole, password = @newpassword,name = @newName, batch = @newBatch, username = @newUsername
+            WHERE username = @username";
 
             using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@newName", newName);
-                command.Parameters.AddWithValue("@newRole", newRole);
                 command.Parameters.AddWithValue("@newBatch", newBatch);
                 command.Parameters.AddWithValue("@newDegree", newDegree);
-                command.Parameters.AddWithValue("@newUsername", newUsername);
                 command.Parameters.AddWithValue("@newpassword", newpassword);
+                command.Parameters.AddWithValue("@newUsername", newUsername);
+                command.Parameters.AddWithValue("@newRole", newRole);
                 command.Parameters.AddWithValue("@username", logged_user);
+                command.Parameters.AddWithValue("@newName", newName);
 
                 try
                 {
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
-                    {
                         MessageBox.Show("User information updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
                     else
-                    {
                         MessageBox.Show("Failed to update user information", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
                 catch (Exception ex)
                 {

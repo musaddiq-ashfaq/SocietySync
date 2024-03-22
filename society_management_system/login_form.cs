@@ -20,12 +20,11 @@ namespace society_management_system
         }
         private void login_button_Click(object sender, EventArgs e)
         {
-            String username = username_box.Text;
             String password = password_box.Text;
+            String username = username_box.Text;
             bool flag = check_user(username, password);
             if(flag==true)
             {
-                //MessageBox.Show("Login Successful");
                 home homePage = new home(username);
                 homePage.Show();
                 this.Close();
@@ -41,8 +40,8 @@ namespace society_management_system
             using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@username", username);
 
                 try
                 {
