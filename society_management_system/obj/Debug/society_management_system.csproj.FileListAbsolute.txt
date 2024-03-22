@@ -12,3 +12,4 @@ C:\D\society_management_system\society_management_system\obj\Debug\society_manag
 C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.pdb
 C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.home.resources
 C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.edit_info.resources
+C:\D\society_management_system\society_management_system\obj\Debug\society_management_system.view_users.resources

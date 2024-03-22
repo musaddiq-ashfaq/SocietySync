@@ -28,15 +28,33 @@ namespace society_management_system
             string batch = batch_box.Text;
             string degree = degree_box.Text;
 
-            bool flag = signup(username, password, name, role, batch, degree);
-            if (flag==true)
+            bool pass_check = false;
+            if (password.Length < 8)
             {
-                home home_page = new home(username);
-                home_page.Show();
-                this.Hide();
+                pass_check = false;
             }
             else
-                MessageBox.Show("Username is taken. Try any other username");
+                pass_check = true;
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(role) || string.IsNullOrEmpty(batch) || string.IsNullOrEmpty(degree))
+                MessageBox.Show("All fields are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                if(pass_check==false)
+                    MessageBox.Show("Password must have 8 digits or more.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    bool flag = signup(username, password, name, role, batch, degree);
+                    if (flag == true)
+                    {
+                        home home_page = new home(username);
+                        home_page.Show();
+                        this.Hide();
+                    }
+                    else
+                        MessageBox.Show("Username is taken. Try any other username");
+                }
+            }
         }
 
         private bool signup(string username, string password, string name, string role, string batch, string degree)
@@ -44,18 +62,16 @@ namespace society_management_system
             string query = @"
             INSERT INTO users (username, password, name, role, batch, degree)
             SELECT @username, @password, @name, @role, @batch, @degree
-            WHERE NOT EXISTS (
-                SELECT 1 FROM users WHERE username = @username
-            )";
+            WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = @username)";
 
             using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", password);
                 command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@role", role);
+                command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@batch", batch);
+                command.Parameters.AddWithValue("@role", role);
+                command.Parameters.AddWithValue("@password", password);
                 command.Parameters.AddWithValue("@degree", degree);
 
                 try
@@ -71,13 +87,6 @@ namespace society_management_system
                 }
             }
         }
-
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             login_form loginForm = new login_form();
@@ -95,6 +104,10 @@ namespace society_management_system
 
         }
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
         }

@@ -62,7 +62,9 @@ namespace society_management_system
 
         private void home_Load(object sender, EventArgs e)
         {
-
+            view_users_button.Visible = false;
+            if (IsAdmin(loggedInUsername))
+                view_users_button.Visible = true;
         }
 
         private void edit_info_button_Click(object sender, EventArgs e)
@@ -82,6 +84,35 @@ namespace society_management_system
         private void button3_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+        private bool IsAdmin(string username)
+        {
+            string query = "SELECT COUNT(*) FROM users WHERE username = @username AND role = 'admin'";
+
+            using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", username);
+
+                try
+                {
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error checking user role: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+        }
+
+        private void view_users_button_Click(object sender, EventArgs e)
+        {
+            view_users viewusers = new view_users(loggedInUsername);
+            viewusers.Show();
+            this.Close();
         }
     }
 }

@@ -16,10 +16,12 @@ namespace society_management_system
     {
         SqlConnection connection_string = new SqlConnection(@"Data Source=DESKTOP-LIM5U3M\SQLEXPRESS;Initial Catalog=society_db;Integrated Security=True");
         private string logged_user;
-        public edit_info(string username)
+        private string logged_admin;
+        public edit_info(string username,string admin = null)
         {
             InitializeComponent();
             logged_user = username;
+            logged_admin = admin;
         }
 
         private void edit_info_Load(object sender, EventArgs e)
@@ -86,9 +88,6 @@ namespace society_management_system
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("User information updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        home homePage = new home(newUsername);
-                        homePage.Show();
-                        this.Close();
                     }
                     else
                     {
@@ -104,9 +103,18 @@ namespace society_management_system
 
         private void home_btn_Click(object sender, EventArgs e)
         {
-            home homePage = new home(logged_user);
-            homePage.Show();
-            this.Close();
+            if (logged_admin != null)
+            {
+                home homePage = new home(logged_admin);
+                homePage.Show();
+                this.Close();
+            }
+            else
+            {
+                home homePage = new home(logged_user);
+                homePage.Show();
+                this.Close();
+            }
         }
 
         private void exit_btn_Click(object sender, EventArgs e)

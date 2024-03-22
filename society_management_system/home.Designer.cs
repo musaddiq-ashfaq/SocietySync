@@ -53,6 +53,7 @@
             this.batch_label = new System.Windows.Forms.Label();
             this.degree_label = new System.Windows.Forms.Label();
             this.username_label = new System.Windows.Forms.Label();
+            this.view_users_button = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -307,12 +308,27 @@
             this.username_label.Size = new System.Drawing.Size(0, 13);
             this.username_label.TabIndex = 15;
             // 
+            // view_users_button
+            // 
+            this.view_users_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.view_users_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.view_users_button.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.view_users_button.ForeColor = System.Drawing.SystemColors.Control;
+            this.view_users_button.Location = new System.Drawing.Point(396, 337);
+            this.view_users_button.Name = "view_users_button";
+            this.view_users_button.Size = new System.Drawing.Size(92, 31);
+            this.view_users_button.TabIndex = 39;
+            this.view_users_button.Text = "View Users";
+            this.view_users_button.UseVisualStyleBackColor = false;
+            this.view_users_button.Click += new System.EventHandler(this.view_users_button_Click);
+            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.view_users_button);
             this.Controls.Add(this.degree_label);
             this.Controls.Add(this.batch_label);
             this.Controls.Add(this.role_label);
@@ -368,5 +384,6 @@
         private System.Windows.Forms.Label batch_label;
         private System.Windows.Forms.Label degree_label;
         private System.Windows.Forms.Label username_label;
+        private System.Windows.Forms.Button view_users_button;
     }
 }
