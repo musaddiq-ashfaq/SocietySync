@@ -71,5 +71,17 @@ namespace society_management_system
             edit.Show();
             this.Close();
         }
+
+        private void edit_info_button_Click_1(object sender, EventArgs e)
+        {
+            edit_info edit = new edit_info(loggedInUsername);
+            edit.Show();
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
     }
 }

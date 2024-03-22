@@ -48,11 +48,11 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.name_label = new System.Windows.Forms.Label();
-            this.username_label = new System.Windows.Forms.Label();
             this.password_label = new System.Windows.Forms.Label();
             this.role_label = new System.Windows.Forms.Label();
             this.batch_label = new System.Windows.Forms.Label();
             this.degree_label = new System.Windows.Forms.Label();
+            this.username_label = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -114,7 +114,7 @@
             this.edit_info_button.Text = "           Edit Info";
             this.edit_info_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.edit_info_button.UseVisualStyleBackColor = true;
-            this.edit_info_button.Click += new System.EventHandler(this.edit_info_button_Click);
+            this.edit_info_button.Click += new System.EventHandler(this.edit_info_button_Click_1);
             // 
             // button2
             // 
@@ -140,67 +140,75 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(170, 38);
             this.button3.TabIndex = 5;
-            this.button3.Text = "             Home";
+            this.button3.Text = "               Exit";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(286, 63);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label1.Location = new System.Drawing.Point(275, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(52, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Name:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(286, 98);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label2.Location = new System.Drawing.Point(275, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(78, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Username:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(286, 142);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label3.Location = new System.Drawing.Point(275, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Password:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(286, 186);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label4.Location = new System.Drawing.Point(275, 185);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.Size = new System.Drawing.Size(42, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Role:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(286, 233);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label5.Location = new System.Drawing.Point(275, 232);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.Size = new System.Drawing.Size(49, 20);
             this.label5.TabIndex = 6;
             this.label5.Text = "Batch:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(286, 279);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label6.Location = new System.Drawing.Point(275, 278);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.Size = new System.Drawing.Size(58, 20);
             this.label6.TabIndex = 7;
             this.label6.Text = "Degree";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel3.Font = new System.Drawing.Font("Segoe UI", 10.75F);
             this.panel3.Location = new System.Drawing.Point(350, 75);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 1);
@@ -209,6 +217,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel4.Font = new System.Drawing.Font("Segoe UI", 10.75F);
             this.panel4.Location = new System.Drawing.Point(350, 110);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(200, 1);
@@ -217,6 +226,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel5.Font = new System.Drawing.Font("Segoe UI", 10.75F);
             this.panel5.Location = new System.Drawing.Point(350, 198);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(200, 1);
@@ -225,6 +235,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel6.Font = new System.Drawing.Font("Segoe UI", 10.75F);
             this.panel6.Location = new System.Drawing.Point(350, 245);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(200, 1);
@@ -233,6 +244,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel7.Font = new System.Drawing.Font("Segoe UI", 10.75F);
             this.panel7.Location = new System.Drawing.Point(350, 154);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(200, 1);
@@ -241,6 +253,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel8.Font = new System.Drawing.Font("Segoe UI", 10.75F);
             this.panel8.Location = new System.Drawing.Point(350, 291);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(200, 1);
@@ -254,50 +267,45 @@
             this.name_label.Size = new System.Drawing.Size(0, 13);
             this.name_label.TabIndex = 14;
             // 
-            // username_label
-            // 
-            this.username_label.AutoSize = true;
-            this.username_label.Location = new System.Drawing.Point(376, 97);
-            this.username_label.Name = "username_label";
-            this.username_label.Size = new System.Drawing.Size(35, 13);
-            this.username_label.TabIndex = 15;
-            this.username_label.Text = "label7";
-            // 
             // password_label
             // 
             this.password_label.AutoSize = true;
             this.password_label.Location = new System.Drawing.Point(376, 139);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(35, 13);
+            this.password_label.Size = new System.Drawing.Size(0, 13);
             this.password_label.TabIndex = 16;
-            this.password_label.Text = "label7";
             // 
             // role_label
             // 
             this.role_label.AutoSize = true;
             this.role_label.Location = new System.Drawing.Point(376, 185);
             this.role_label.Name = "role_label";
-            this.role_label.Size = new System.Drawing.Size(35, 13);
+            this.role_label.Size = new System.Drawing.Size(0, 13);
             this.role_label.TabIndex = 17;
-            this.role_label.Text = "label7";
             // 
             // batch_label
             // 
             this.batch_label.AutoSize = true;
             this.batch_label.Location = new System.Drawing.Point(373, 230);
             this.batch_label.Name = "batch_label";
-            this.batch_label.Size = new System.Drawing.Size(35, 13);
+            this.batch_label.Size = new System.Drawing.Size(0, 13);
             this.batch_label.TabIndex = 18;
-            this.batch_label.Text = "label7";
             // 
             // degree_label
             // 
             this.degree_label.AutoSize = true;
             this.degree_label.Location = new System.Drawing.Point(379, 278);
             this.degree_label.Name = "degree_label";
-            this.degree_label.Size = new System.Drawing.Size(35, 13);
+            this.degree_label.Size = new System.Drawing.Size(0, 13);
             this.degree_label.TabIndex = 19;
-            this.degree_label.Text = "label7";
+            // 
+            // username_label
+            // 
+            this.username_label.AutoSize = true;
+            this.username_label.Location = new System.Drawing.Point(376, 97);
+            this.username_label.Name = "username_label";
+            this.username_label.Size = new System.Drawing.Size(0, 13);
+            this.username_label.TabIndex = 15;
             // 
             // home
             // 
@@ -355,10 +363,10 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label name_label;
-        private System.Windows.Forms.Label username_label;
         private System.Windows.Forms.Label password_label;
         private System.Windows.Forms.Label role_label;
         private System.Windows.Forms.Label batch_label;
         private System.Windows.Forms.Label degree_label;
+        private System.Windows.Forms.Label username_label;
     }
 }

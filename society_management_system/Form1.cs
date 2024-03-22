@@ -19,35 +19,27 @@ namespace society_management_system
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void signup_button_Click(object sender, EventArgs e)
         {
-            String username = username_box.Text;
-            String password = password_box.Text;
-            String name = name_box.Text;
-            String role = role_box.Text;
-            String batch = batch_box.Text;
-            String degree = degree_box.Text;
+            string username = username_box.Text;
+            string password = password_box.Text;
+            string name = name_box.Text;
+            string role = role_box.Text;
+            string batch = batch_box.Text;
+            string degree = degree_box.Text;
 
-            bool flag = InsertUser(username, password, name, role, batch, degree);
-            if (flag)
+            bool flag = signup(username, password, name, role, batch, degree);
+            if (flag==true)
             {
-                MessageBox.Show("SignUp Successful");
-                home homePage = new home(username);
-                homePage.Show();
+                home home_page = new home(username);
+                home_page.Show();
                 this.Hide();
             }
             else
-            {
-                MessageBox.Show("Username Already Exists");
-            }
+                MessageBox.Show("Username is taken. Try any other username");
         }
 
-        private bool InsertUser(string username, string password, string name, string role, string batch, string degree)
+        private bool signup(string username, string password, string name, string role, string batch, string degree)
         {
             string query = @"
             INSERT INTO users (username, password, name, role, batch, degree)
@@ -94,6 +86,15 @@ namespace society_management_system
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void degree_box_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
