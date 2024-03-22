@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.home_btn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.edit_info_button = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.panel2);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.edit_info_button);
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -101,19 +101,20 @@
             this.home_btn.UseVisualStyleBackColor = true;
             this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
             // 
-            // button1
+            // edit_info_button
             // 
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(3, 127);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(170, 38);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "             Home";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
+            this.edit_info_button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.edit_info_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.edit_info_button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edit_info_button.ForeColor = System.Drawing.Color.White;
+            this.edit_info_button.Location = new System.Drawing.Point(3, 127);
+            this.edit_info_button.Name = "edit_info_button";
+            this.edit_info_button.Size = new System.Drawing.Size(170, 38);
+            this.edit_info_button.TabIndex = 3;
+            this.edit_info_button.Text = "           Edit Info";
+            this.edit_info_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.edit_info_button.UseVisualStyleBackColor = true;
+            this.edit_info_button.Click += new System.EventHandler(this.edit_info_button_Click);
             // 
             // button2
             // 
@@ -338,7 +339,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button home_btn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button edit_info_button;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;

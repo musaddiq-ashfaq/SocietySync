@@ -8,23 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace society_management_system
 {
-    public partial class home : Form
+    public partial class edit_info : Form
     {
         SqlConnection connection_string = new SqlConnection(@"Data Source=DESKTOP-LIM5U3M\SQLEXPRESS;Initial Catalog=society_db;Integrated Security=True");
         private string loggedInUsername;
-        public home(string username)
+        public edit_info(string username)
         {
             InitializeComponent();
             loggedInUsername = username;
-            DisplayUserInfo(username);
         }
-        private void DisplayUserInfo(string username)
+
+        private void edit_info_Load(object sender, EventArgs e)
         {
+            string username = loggedInUsername;
             string query = "SELECT * FROM users WHERE username = @username";
 
             using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
@@ -38,12 +37,12 @@ namespace society_management_system
                     SqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
-                        name_label.Text = reader["name"].ToString();
-                        role_label.Text = reader["role"].ToString();
-                        username_label.Text = reader["username"].ToString();
-                        password_label.Text = reader["password"].ToString();
-                        batch_label.Text = reader["batch"].ToString();
-                        degree_label.Text = reader["degree"].ToString();
+                        username_box.Text = reader["username"].ToString();
+                        password_box.Text = reader["password"].ToString();
+                        name_box.Text = reader["name"].ToString();
+                        role_box.Text = reader["role"].ToString();
+                        batch_box.Text = reader["batch"].ToString();
+                        degree_box.Text = reader["degree"].ToString();
                     }
                     reader.Close();
                 }
@@ -52,24 +51,6 @@ namespace society_management_system
                     MessageBox.Show("Error fetching user information: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-
-        private void home_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void home_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void edit_info_button_Click(object sender, EventArgs e)
-        {
-            edit_info edit = new edit_info(loggedInUsername);
-            edit.Show();
-            this.Close();
         }
     }
 }
