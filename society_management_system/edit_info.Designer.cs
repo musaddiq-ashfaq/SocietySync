@@ -133,6 +133,7 @@
             this.edit_info_button.Text = "           Edit Info";
             this.edit_info_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.edit_info_button.UseVisualStyleBackColor = true;
+            this.edit_info_button.Click += new System.EventHandler(this.edit_info_button_Click);
             // 
             // button2
             // 

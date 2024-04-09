@@ -24,69 +24,79 @@ namespace society_management_system
             string degree = degree_box.Text;
             string society = null;
 
-            bool pass_check = false;
-            if (password.Length < 8)
-            {
-                pass_check = false;
-            }
-            else
-                pass_check = true;
+            bool pass_check = password.Length >= 8;
+            bool allFieldsFilled = !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(role) && !string.IsNullOrEmpty(batch) && !string.IsNullOrEmpty(degree);
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(role) || string.IsNullOrEmpty(batch) || string.IsNullOrEmpty(degree))
-                MessageBox.Show("All fields are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
+            if (!allFieldsFilled)
             {
-                if (pass_check == false)
-                    MessageBox.Show("Password must have 8 digits or more.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
+                MessageBox.Show("All fields are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!pass_check)
+            {
+                MessageBox.Show("Password must have 8 digits or more.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (role == "head")
+            {
+                society_reg sr = new society_reg(username);
+                sr.SocietyRegistered += (s, args) =>
                 {
-                    if (role == "head")
+                    Console.WriteLine("SocietyRegistered event handler invoked.");
+                    string societyName = sr.SocietyName; // Retrieve the society name from the property
+                    Console.WriteLine("Printing: " + societyName); // Corrected printing to console
+                    bool flag = signup(username, password, name, role, batch, degree);
+                    if (flag)
                     {
-                        society_reg sr = new society_reg(username);
-                        sr.SocietyRegistered += (s, args) =>
-                        {
-                            home home_page = new home(username);
-                            home_page.Show();
-                            this.Hide();
-                        };
-                        sr.Show();
+                        MessageBox.Show("User signed up successfully with society: " + societyName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        home home_page = new home(username);
+                        home_page.Show();
+                        this.Hide();
                     }
                     else
                     {
-                        SelectSocietyDialog dialog = new SelectSocietyDialog(username);
-                        if (dialog.ShowDialog() == DialogResult.OK)
-                        {
-                            society = dialog.SelectedSociety;
-                            bool flag = signup(username, password, name, role, batch, degree, society);
-                            if (flag)
-                            {
-                                MessageBox.Show("User signed up successfully with society: " + society, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                home home_page = new home(username);
-                                home_page.Show();
-                                this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Failed to sign up user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("User cancelled society selection.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        MessageBox.Show("Failed to sign up user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                };
 
+                sr.Show();
+            }
+            else
+            {
+                SelectSocietyDialog dialog = new SelectSocietyDialog(username);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    society = dialog.SelectedSociety;
+                    bool flag = signup(username, password, name, role, batch, degree);
+                    if (flag)
+                    {
+                        MessageBox.Show("User signed up successfully with society: " + society, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        home home_page = new home(username);
+                        home_page.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to sign up user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("User cancelled society selection.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-
-
-        private bool signup(string username, string password, string name, string role, string batch, string degree, string society)
+        private bool signup(string username, string password, string name, string role, string batch, string degree)
         {
+            //string query = @"
+            //INSERT INTO users (username, password, name, role, batch, degree, society)
+            //SELECT @username, @password, @name, @role, @batch, @degree, @society
+            //WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = @username)";
             string query = @"
-            INSERT INTO users (username, password, name, role, batch, degree, society)
-            SELECT @username, @password, @name, @role, @batch, @degree, @society
+            INSERT INTO users (username, password, name, role, batch, degree)
+            SELECT @username, @password, @name, @role, @batch, @degree
             WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = @username)";
 
             using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
@@ -98,7 +108,6 @@ namespace society_management_system
                 command.Parameters.AddWithValue("@role", role);
                 command.Parameters.AddWithValue("@password", password);
                 command.Parameters.AddWithValue("@degree", degree);
-                command.Parameters.AddWithValue("@society", society);
 
                 try
                 {

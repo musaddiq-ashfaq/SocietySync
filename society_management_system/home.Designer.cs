@@ -57,6 +57,7 @@
             this.society_label = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
+            this.add_event_button = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -317,7 +318,7 @@
             this.view_users_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.view_users_button.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.view_users_button.ForeColor = System.Drawing.SystemColors.Control;
-            this.view_users_button.Location = new System.Drawing.Point(392, 370);
+            this.view_users_button.Location = new System.Drawing.Point(395, 389);
             this.view_users_button.Name = "view_users_button";
             this.view_users_button.Size = new System.Drawing.Size(92, 31);
             this.view_users_button.TabIndex = 39;
@@ -352,12 +353,27 @@
             this.label8.TabIndex = 40;
             this.label8.Text = "Society:";
             // 
+            // add_event_button
+            // 
+            this.add_event_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.add_event_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_event_button.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.add_event_button.ForeColor = System.Drawing.SystemColors.Control;
+            this.add_event_button.Location = new System.Drawing.Point(395, 352);
+            this.add_event_button.Name = "add_event_button";
+            this.add_event_button.Size = new System.Drawing.Size(92, 31);
+            this.add_event_button.TabIndex = 43;
+            this.add_event_button.Text = "Add Event";
+            this.add_event_button.UseVisualStyleBackColor = false;
+            this.add_event_button.Click += new System.EventHandler(this.add_event_button_Click);
+            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.add_event_button);
             this.Controls.Add(this.society_label);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.label8);
@@ -421,5 +437,6 @@
         private System.Windows.Forms.Label society_label;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button add_event_button;
     }
 }

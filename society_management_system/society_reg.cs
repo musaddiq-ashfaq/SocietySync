@@ -15,6 +15,8 @@ namespace society_management_system
         }
 
         public string Head { get; set; }
+        public string SocietyName { get; private set; }
+
 
         private void signup_button_Click(object sender, EventArgs e)
         {

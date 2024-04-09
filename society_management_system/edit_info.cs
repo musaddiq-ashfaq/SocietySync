@@ -151,5 +151,10 @@ namespace society_management_system
                 connection_string.Close();
             }
         }
+
+        private void edit_info_button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

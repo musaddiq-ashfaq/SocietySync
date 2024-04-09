@@ -64,6 +64,9 @@ namespace society_management_system
         private void home_Load(object sender, EventArgs e)
         {
             view_users_button.Visible = false;
+            add_event_button.Visible = false;
+            if (IsHead(loggedInUsername))
+                add_event_button.Visible = true;
             if (IsAdmin(loggedInUsername))
                 view_users_button.Visible = true;
         }
@@ -108,11 +111,39 @@ namespace society_management_system
                 }
             }
         }
+        private bool IsHead(string username)
+        {
+            string query = "SELECT COUNT(*) FROM users WHERE username = @username AND role = 'head'";
+            using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", username);
+
+                try
+                {
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error checking user role: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+        }
 
         private void view_users_button_Click(object sender, EventArgs e)
         {
             view_users viewusers = new view_users(loggedInUsername);
             viewusers.Show();
+            this.Close();
+        }
+
+        private void add_event_button_Click(object sender, EventArgs e)
+        {
+            Add_Event addEvent = new Add_Event(loggedInUsername);
+            addEvent.Show();
             this.Close();
         }
     }
