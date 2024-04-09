@@ -122,5 +122,12 @@ namespace society_management_system
             homePage.Show();
             this.Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AnnouncementsPage ann = new AnnouncementsPage(loggedInUsername);
+            ann.Show();
+            this.Close();
+        }
     }
 }

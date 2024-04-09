@@ -52,6 +52,12 @@
     <Compile Include="Add_Event.Designer.cs">
       <DependentUpon>Add_Event.cs</DependentUpon>
     </Compile>
+    <Compile Include="AnnouncementsPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnnouncementsPage.Designer.cs">
+      <DependentUpon>AnnouncementsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="edit_info.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </Compile>
     <EmbeddedResource Include="Add_Event.resx">
       <DependentUpon>Add_Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnnouncementsPage.resx">
+      <DependentUpon>AnnouncementsPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="edit_info.resx">
       <DependentUpon>edit_info.cs</DependentUpon>
