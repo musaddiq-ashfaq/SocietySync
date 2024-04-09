@@ -47,9 +47,17 @@ namespace society_management_system
                     bool flag = signup(username, password, name, role, batch, degree);
                     if (flag == true)
                     {
-                        home home_page = new home(username);
-                        home_page.Show();
-                        this.Hide();
+                        if (role == "head")
+                        {
+                            society_reg sr = new society_reg(username);
+                            sr.SocietyRegistered += (s, args) =>
+                            {
+                                home home_page = new home(username);
+                                home_page.Show();
+                                this.Hide();
+                            };
+                            sr.Show();
+                        }
                     }
                     else
                         MessageBox.Show("Username is taken. Try any other username");
