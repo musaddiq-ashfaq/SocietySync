@@ -72,6 +72,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectSocietyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSocietyDialog.Designer.cs">
+      <DependentUpon>SelectSocietyDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="society_reg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectSocietyDialog.resx">
+      <DependentUpon>SelectSocietyDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="society_reg.resx">
       <DependentUpon>society_reg.cs</DependentUpon>
     </EmbeddedResource>

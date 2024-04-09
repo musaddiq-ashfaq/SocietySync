@@ -44,6 +44,7 @@ namespace society_management_system
                         password_label.Text = reader["password"].ToString();
                         batch_label.Text = reader["batch"].ToString();
                         degree_label.Text = reader["degree"].ToString();
+                        society_label.Text = reader["society"].ToString();
                     }
                     reader.Close();
                 }

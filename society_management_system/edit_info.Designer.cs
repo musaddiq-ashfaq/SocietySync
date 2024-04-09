@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(edit_info));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.home_btn = new System.Windows.Forms.Button();
             this.edit_info_button = new System.Windows.Forms.Button();
@@ -55,11 +56,13 @@
             this.batch_box = new System.Windows.Forms.TextBox();
             this.degree_box = new System.Windows.Forms.TextBox();
             this.save_button = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.societyDropdown = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -83,6 +86,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(170, 74);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-3, -3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(173, 77);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -330,7 +343,7 @@
             this.save_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_button.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.save_button.ForeColor = System.Drawing.SystemColors.Control;
-            this.save_button.Location = new System.Drawing.Point(395, 344);
+            this.save_button.Location = new System.Drawing.Point(396, 390);
             this.save_button.Name = "save_button";
             this.save_button.Size = new System.Drawing.Size(92, 31);
             this.save_button.TabIndex = 38;
@@ -338,21 +351,41 @@
             this.save_button.UseVisualStyleBackColor = false;
             this.save_button.Click += new System.EventHandler(this.save_button_Click);
             // 
-            // pictureBox1
+            // panel9
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-3, -3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 77);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel9.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.panel9.Location = new System.Drawing.Point(379, 349);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(200, 1);
+            this.panel9.TabIndex = 44;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label8.Location = new System.Drawing.Point(304, 336);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 20);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "Society:";
+            // 
+            // societyDropdown
+            // 
+            this.societyDropdown.FormattingEnabled = true;
+            this.societyDropdown.Location = new System.Drawing.Point(396, 326);
+            this.societyDropdown.Name = "societyDropdown";
+            this.societyDropdown.Size = new System.Drawing.Size(170, 21);
+            this.societyDropdown.TabIndex = 46;
             // 
             // edit_info
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.societyDropdown);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.save_button);
             this.Controls.Add(this.degree_box);
             this.Controls.Add(this.batch_box);
@@ -379,8 +412,8 @@
             this.Load += new System.EventHandler(this.edit_info_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,5 +448,8 @@
         private System.Windows.Forms.TextBox degree_box;
         private System.Windows.Forms.Button save_button;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox societyDropdown;
     }
 }

@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace society_management_system
 {
     public partial class Form1 : Form
     {
         SqlConnection connection_string = new SqlConnection(@"Data Source=DESKTOP-LIM5U3M\SQLEXPRESS;Initial Catalog=society_db;Integrated Security=True");
+
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +22,7 @@ namespace society_management_system
             string role = role_box.Text;
             string batch = batch_box.Text;
             string degree = degree_box.Text;
+            string society = null;
 
             bool pass_check = false;
             if (password.Length < 8)
@@ -40,36 +36,57 @@ namespace society_management_system
                 MessageBox.Show("All fields are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                if(pass_check==false)
+                if (pass_check == false)
                     MessageBox.Show("Password must have 8 digits or more.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
-                    bool flag = signup(username, password, name, role, batch, degree);
-                    if (flag == true)
+                    if (role == "head")
                     {
-                        if (role == "head")
+                        society_reg sr = new society_reg(username);
+                        sr.SocietyRegistered += (s, args) =>
                         {
-                            society_reg sr = new society_reg(username);
-                            sr.SocietyRegistered += (s, args) =>
+                            home home_page = new home(username);
+                            home_page.Show();
+                            this.Hide();
+                        };
+                        sr.Show();
+                    }
+                    else
+                    {
+                        SelectSocietyDialog dialog = new SelectSocietyDialog(username);
+                        if (dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            society = dialog.SelectedSociety;
+                            bool flag = signup(username, password, name, role, batch, degree, society);
+                            if (flag)
                             {
+                                MessageBox.Show("User signed up successfully with society: " + society, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 home home_page = new home(username);
                                 home_page.Show();
                                 this.Hide();
-                            };
-                            sr.Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to sign up user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("User cancelled society selection.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-                    else
-                        MessageBox.Show("Username is taken. Try any other username");
+
                 }
             }
         }
 
-        private bool signup(string username, string password, string name, string role, string batch, string degree)
+
+
+        private bool signup(string username, string password, string name, string role, string batch, string degree, string society)
         {
             string query = @"
-            INSERT INTO users (username, password, name, role, batch, degree)
-            SELECT @username, @password, @name, @role, @batch, @degree
+            INSERT INTO users (username, password, name, role, batch, degree, society)
+            SELECT @username, @password, @name, @role, @batch, @degree, @society
             WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = @username)";
 
             using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
@@ -81,12 +98,13 @@ namespace society_management_system
                 command.Parameters.AddWithValue("@role", role);
                 command.Parameters.AddWithValue("@password", password);
                 command.Parameters.AddWithValue("@degree", degree);
+                command.Parameters.AddWithValue("@society", society);
 
                 try
                 {
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected>0;
+                    return rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
@@ -95,6 +113,8 @@ namespace society_management_system
                 }
             }
         }
+
+
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             login_form loginForm = new login_form();
@@ -111,10 +131,12 @@ namespace society_management_system
         {
 
         }
+
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 

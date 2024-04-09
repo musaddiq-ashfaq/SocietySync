@@ -54,6 +54,9 @@
             this.degree_label = new System.Windows.Forms.Label();
             this.username_label = new System.Windows.Forms.Label();
             this.view_users_button = new System.Windows.Forms.Button();
+            this.society_label = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -202,9 +205,9 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.75F);
             this.label6.Location = new System.Drawing.Point(275, 278);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 20);
+            this.label6.Size = new System.Drawing.Size(61, 20);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Degree";
+            this.label6.Text = "Degree:";
             // 
             // panel3
             // 
@@ -314,7 +317,7 @@
             this.view_users_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.view_users_button.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.view_users_button.ForeColor = System.Drawing.SystemColors.Control;
-            this.view_users_button.Location = new System.Drawing.Point(396, 337);
+            this.view_users_button.Location = new System.Drawing.Point(392, 370);
             this.view_users_button.Name = "view_users_button";
             this.view_users_button.Size = new System.Drawing.Size(92, 31);
             this.view_users_button.TabIndex = 39;
@@ -322,12 +325,42 @@
             this.view_users_button.UseVisualStyleBackColor = false;
             this.view_users_button.Click += new System.EventHandler(this.view_users_button_Click);
             // 
+            // society_label
+            // 
+            this.society_label.AutoSize = true;
+            this.society_label.Location = new System.Drawing.Point(379, 322);
+            this.society_label.Name = "society_label";
+            this.society_label.Size = new System.Drawing.Size(0, 13);
+            this.society_label.TabIndex = 42;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel9.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.panel9.Location = new System.Drawing.Point(350, 335);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(200, 1);
+            this.panel9.TabIndex = 41;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.75F);
+            this.label8.Location = new System.Drawing.Point(275, 322);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 20);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "Society:";
+            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.society_label);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.view_users_button);
             this.Controls.Add(this.degree_label);
             this.Controls.Add(this.batch_label);
@@ -385,5 +418,8 @@
         private System.Windows.Forms.Label degree_label;
         private System.Windows.Forms.Label username_label;
         private System.Windows.Forms.Button view_users_button;
+        private System.Windows.Forms.Label society_label;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label8;
     }
 }
