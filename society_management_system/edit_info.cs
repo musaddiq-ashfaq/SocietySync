@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace society_management_system
@@ -28,6 +29,7 @@ namespace society_management_system
 
         private void edit_info_Load(object sender, EventArgs e)
         {
+            button2.ForeColor = Color.White;
             string username = logged_user;
             string query = "SELECT * FROM users WHERE username = @username";
 
@@ -155,6 +157,13 @@ namespace society_management_system
         private void edit_info_button_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AnnouncementsPage ann = new AnnouncementsPage(logged_user);
+            ann.Show();
+            this.Close();
         }
     }
 }
