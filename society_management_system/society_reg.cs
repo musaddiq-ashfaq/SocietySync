@@ -32,6 +32,7 @@ namespace society_management_system
                 MessageBox.Show("Number of users must be an integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            SocietyName = society_name_box.Text;
 
             string query = @"INSERT INTO societies (name, description, num_users, head)
                              VALUES (@name, @description, @num_users, @head)";

@@ -43,10 +43,8 @@ namespace society_management_system
                 society_reg sr = new society_reg(username);
                 sr.SocietyRegistered += (s, args) =>
                 {
-                    Console.WriteLine("SocietyRegistered event handler invoked.");
                     string societyName = sr.SocietyName; // Retrieve the society name from the property
-                    Console.WriteLine("Printing: " + societyName); // Corrected printing to console
-                    bool flag = signup(username, password, name, role, batch, degree);
+                    bool flag = signup(username, password, name, role, batch, degree, societyName);
                     if (flag)
                     {
                         MessageBox.Show("User signed up successfully with society: " + societyName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -68,7 +66,7 @@ namespace society_management_system
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     society = dialog.SelectedSociety;
-                    bool flag = signup(username, password, name, role, batch, degree);
+                    bool flag = signup(username, password, name, role, batch, degree,society);
                     if (flag)
                     {
                         MessageBox.Show("User signed up successfully with society: " + society, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,15 +86,11 @@ namespace society_management_system
             }
         }
 
-        private bool signup(string username, string password, string name, string role, string batch, string degree)
+        private bool signup(string username, string password, string name, string role, string batch, string degree,string society)
         {
-            //string query = @"
-            //INSERT INTO users (username, password, name, role, batch, degree, society)
-            //SELECT @username, @password, @name, @role, @batch, @degree, @society
-            //WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = @username)";
             string query = @"
-            INSERT INTO users (username, password, name, role, batch, degree)
-            SELECT @username, @password, @name, @role, @batch, @degree
+            INSERT INTO users (username, password, name, role, batch, degree, society)
+            SELECT @username, @password, @name, @role, @batch, @degree, @society
             WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = @username)";
 
             using (SqlConnection connection = new SqlConnection(connection_string.ConnectionString))
@@ -108,6 +102,18 @@ namespace society_management_system
                 command.Parameters.AddWithValue("@role", role);
                 command.Parameters.AddWithValue("@password", password);
                 command.Parameters.AddWithValue("@degree", degree);
+
+                if (!string.IsNullOrEmpty(society))
+                {
+                    command.Parameters.AddWithValue("@society", society);
+                }
+                else
+                {
+                    // Handle the case where society is null or empty
+                    MessageBox.Show("Society is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false; // Return false indicating failure
+                }
+
 
                 try
                 {
