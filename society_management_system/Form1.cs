@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace society_management_system
@@ -27,14 +28,60 @@ namespace society_management_system
             bool pass_check = password.Length >= 8;
             bool allFieldsFilled = !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(role) && !string.IsNullOrEmpty(batch) && !string.IsNullOrEmpty(degree);
 
-            if (!allFieldsFilled)
+            // Validate username
+            bool validUsername = !username.Contains(" ");
+            if (!validUsername)
             {
-                MessageBox.Show("All fields are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Username cannot contain spaces.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Return without proceeding further
             }
+
+            // Validate password length
             if (!pass_check)
             {
                 MessageBox.Show("Password must have 8 digits or more.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Return without proceeding further
+            }
+
+            // Validate batch
+            int batchValue;
+            bool validBatch = int.TryParse(batch, out batchValue) && (batchValue >= 2019 && batchValue <= 2023);
+            if (!validBatch)
+            {
+                MessageBox.Show("Batch value should be an integer between 2019 and 2023.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validate name
+            bool validName = true; // No special character check for name
+
+            // Validate role
+            bool validRole = role.Equals("head", StringComparison.OrdinalIgnoreCase) || role.Equals("vice head", StringComparison.OrdinalIgnoreCase) || role.Equals("member", StringComparison.OrdinalIgnoreCase);
+            if (!validRole)
+            {
+                MessageBox.Show("Role should be 'head', 'vice head', or 'member'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validate username length
+            bool validUsernameLength = username.Length <= 12;
+            if (!validUsernameLength)
+            {
+                MessageBox.Show("Username cannot exceed 12 characters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validate name length
+            bool validNameLength = name.Length <= 16;
+            if (!validNameLength)
+            {
+                MessageBox.Show("Name cannot have more than 16 characters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!allFieldsFilled)
+            {
+                MessageBox.Show("All fields are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -66,7 +113,7 @@ namespace society_management_system
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     society = dialog.SelectedSociety;
-                    bool flag = signup(username, password, name, role, batch, degree,society);
+                    bool flag = signup(username, password, name, role, batch, degree, society);
                     if (flag)
                     {
                         MessageBox.Show("User signed up successfully with society: " + society, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -86,7 +133,8 @@ namespace society_management_system
             }
         }
 
-        private bool signup(string username, string password, string name, string role, string batch, string degree,string society)
+
+        private bool signup(string username, string password, string name, string role, string batch, string degree, string society)
         {
             string query = @"
             INSERT INTO users (username, password, name, role, batch, degree, society)
@@ -114,7 +162,6 @@ namespace society_management_system
                     return false; // Return false indicating failure
                 }
 
-
                 try
                 {
                     connection.Open();
@@ -128,7 +175,6 @@ namespace society_management_system
                 }
             }
         }
-
 
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
